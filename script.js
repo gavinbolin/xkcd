@@ -1,3 +1,5 @@
+Vue.component('star-rating', VueStarRating.default);
+
 let app = new Vue({
   el: '#app',
   data: {
@@ -11,6 +13,7 @@ let app = new Vue({
     addedName: '',
     addedComment: '',
     comments: {},
+    ratings: {},
   },
   created() {
     this.xkcd();
@@ -69,12 +72,22 @@ let app = new Vue({
     lastComic() {
       this.number = this.max;
     },
+    setRating(rating){
+      if (!(this.number in this.ratings))
+        Vue.set(this.ratings, this.number, {
+          sum: 0,
+          total: 0,
+          ave: sum / total
+        });
+      this.ratings[this.number].sum += rating;
+      this.ratings[this.number].total += 1;
+    },
     addComment() {
       if (!(this.number in this.comments))
         Vue.set(app.comments, this.number, new Array);
       this.comments[this.number].push({
         author: this.addedName,
-        date: this.moment().format('l'),
+        date: moment().format('l'),
         text: this.addedComment,
       });
       this.addedName = '';

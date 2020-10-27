@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="./styles.css" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
   <title>XKCD Browser</title>
 </head>
@@ -25,6 +25,10 @@
       <img v-bind:src="current.img" v-bind:alt="current.alt">
       <p>{{current.alt}}</p>
       <p><i>#{{current.num}}, drawn on {{current.day}} {{month}} {{current.year}}</i></p>
+      <div>
+        <star-rating @rating-selected ="setRating" increment = 0.5 active-color="#FF0000"></star-rating>
+        <p>Average Rating: {{ratings.ave}}</p>
+      </div>
       <h3>Add a Comment</h3>
       <form v-on:submit.prevent="addComment">
         <input v-model="addedName" placeholder="Name"></p>
@@ -43,7 +47,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/vue-star-rating@1.7.0/dist/VueStarRating.umd.min.js (Links to an external site.)"></script>
+  <script src="https://unpkg.com/vue-star-rating@1.7.0/dist/VueStarRating.umd.min.js"></script>
   <script src="/script.js"></script>
 </body>
 
